@@ -26,6 +26,6 @@ class UpdateSearchSettings extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEnd
      */
     protected $uri = '/engines/{engine_name}/search_settings';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
     // phpcs:enable
 }

@@ -26,8 +26,8 @@ class QuerySuggestion extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines/{engine_name}/query_suggestion';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['query', 'types.documents.fields', 'size'];
+    protected $paramWhitelist = array('query', 'types.documents.fields', 'size');
     // phpcs:enable
 }

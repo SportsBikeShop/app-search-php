@@ -40,7 +40,8 @@ class ClientBuilder extends \Elastic\OpenApi\Codegen\AbstractClientBuilder
      */
     public static function create($apiEndpoint = null, $apiKey = null)
     {
-        return (new static())->setHost($apiEndpoint)->setApiKey($apiKey);
+        $tmpClass = new static();
+        return $tmpClass->setHost($apiEndpoint)->setApiKey($apiKey);
     }
 
     /**

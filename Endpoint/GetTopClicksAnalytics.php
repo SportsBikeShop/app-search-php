@@ -26,8 +26,8 @@ class GetTopClicksAnalytics extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEn
      */
     protected $uri = '/engines/{engine_name}/analytics/clicks';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['query', 'page.size', 'filters'];
+    protected $paramWhitelist = array('query', 'page.size', 'filters');
     // phpcs:enable
 }

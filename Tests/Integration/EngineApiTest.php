@@ -20,7 +20,7 @@ class EngineApiTest extends AbstractClientTestCase
     /**
      * @var array
      */
-    private $engines = [];
+    private $engines = array();
 
     /**
      * Delete the engines created during the test.
@@ -34,7 +34,7 @@ class EngineApiTest extends AbstractClientTestCase
                 // The engine have already been deleted. Nothing to do.
             }
         }
-        $this->engines = [];
+        $this->engines = array();
     }
 
     /**
@@ -46,15 +46,16 @@ class EngineApiTest extends AbstractClientTestCase
      *
      * @param string $language Engine language.
      *
-     * @testWith ["en"]
-     *           [null]
+     * @testWith array("en")
+     *           array(null)
      */
     public function testApiMethods($language)
     {
         $client = $this->getDefaultClient();
         $engineName = $this->getEngineName(__METHOD__, func_get_args());
 
-        $this->assertEquals($engineName, $client->createEngine($engineName, $language)['name']);
+        $tmp = $client->createEngine($engineName, $language);
+        $this->assertEquals($engineName, $tmp['name']);
         $this->engines[] = $engineName;
 
         $engine = $client->getEngine($engineName);
@@ -64,7 +65,8 @@ class EngineApiTest extends AbstractClientTestCase
         $engineList = $client->listEngines(1, 20);
         $this->assertContains($engine, $engineList['results']);
 
-        $this->assertTrue($client->deleteEngine($engineName)['deleted']);
+        $tmp = $client->deleteEngine($engineName);
+        $this->assertTrue($tmp['deleted']);
     }
 
     /**
@@ -101,9 +103,9 @@ class EngineApiTest extends AbstractClientTestCase
         $this->getDefaultClient()->createEngine($engineName);
     }
 
-    private function getEngineName($method, $params = [])
+    private function getEngineName($method, $params = array())
     {
-        $nameParts = [$this->getDefaultEngineName()];
+        $nameParts = array($this->getDefaultEngineName());
 
         $methodParts = explode(':', $method);
         $nameParts[] = strtolower(end($methodParts));

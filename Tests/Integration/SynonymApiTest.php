@@ -20,7 +20,7 @@ class SynonymApiTest extends AbstractEngineTestCase
      *
      * @param array $synonymSetData
      *
-     * @testWith [["foo", "bar"]]
+     * @testWith array(array("foo", "bar"))
      */
     public function testSynonymsApi($synonyms)
     {
@@ -38,6 +38,6 @@ class SynonymApiTest extends AbstractEngineTestCase
         $this->assertCount(1, $synonymSetListResponse['results']);
 
         $deleteOperationResponse = $client->deleteSynonymSet($engineName, $synonymSet['id']);
-        $this->assertEquals(['deleted' => true], $deleteOperationResponse);
+        $this->assertEquals(array('deleted' => true), $deleteOperationResponse);
     }
 }

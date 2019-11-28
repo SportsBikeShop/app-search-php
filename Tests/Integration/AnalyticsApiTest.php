@@ -18,8 +18,8 @@ class AnalyticsApiTest extends AbstractEngineTestCase
     /**
      * Test top clicks analytics request.
      *
-     * @testWith ["brunch", 3]
-     *           ["brunch", 20]
+     * @testWith array("brunch", 3)
+     *           array("brunch", 20)
      */
     public function testTopClicks($searchTerm, $size)
     {
@@ -35,25 +35,25 @@ class AnalyticsApiTest extends AbstractEngineTestCase
     /**
      * Test top queries analytics request.
      *
-     * @testWith [3, null, null]
-     *           [3, true, true]
-     *           [3, true, false]
-     *           [20, false, true]
-     *           [20, false, false]
+     * @testWith array(3, null, null)
+     *           array(3, true, true)
+     *           array(3, true, false)
+     *           array(20, false, true)
+     *           array(20, false, false)
      */
     public function testTopQueries($size, $withResults, $clicked)
     {
         $client = $this->getDefaultClient();
         $engine = $this->getDefaultEngineName();
 
-        $filters = [];
+        $filters = array();
 
         if (null != $withResults) {
-            $filters['all'][] = ['results' => $withResults];
+            $filters['all'][] = array('results' => $withResults);
         }
 
         if (null != $clicked) {
-            $filters['all'][] = ['clicks' => $clicked];
+            $filters['all'][] = array('clicks' => $clicked);
         }
 
         $queries = $client->getTopQueriesAnalytics($engine, $size, !empty($filters) ? $filters : null);

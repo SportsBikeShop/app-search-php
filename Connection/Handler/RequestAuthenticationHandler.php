@@ -43,7 +43,7 @@ class RequestAuthenticationHandler
      * @param callable $handler original handler
      * @param string   $apiKey  API Key
      */
-    public function __construct(callable $handler, $apiKey)
+    public function __construct($handler, $apiKey)
     {
         $this->handler = $handler;
         $this->apiKey = $apiKey;
@@ -60,7 +60,7 @@ class RequestAuthenticationHandler
     {
         $handler = $this->handler;
 
-        $headerValue = [sprintf(self::HEADER_VALUE_PATTERN, $this->apiKey)];
+        $headerValue = array(sprintf(self::HEADER_VALUE_PATTERN, $this->apiKey));
         $request = Core::setHeader($request, self::HEADER_NAME, $headerValue);
 
         return $handler($request);

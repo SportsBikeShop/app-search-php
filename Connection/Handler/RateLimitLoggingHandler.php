@@ -46,14 +46,14 @@ class RateLimitLoggingHandler
     /**
      * @var LoggerInterface
      */
-    private $logger;
+    public $logger;
 
     /**
      * Constructor.
      *
      * @param callable $handler original handler
      */
-    public function __construct(callable $handler, LoggerInterface $logger)
+    public function __construct($handler, LoggerInterface $logger)
     {
         $this->handler = $handler;
         $this->logger = $logger;
@@ -69,14 +69,15 @@ class RateLimitLoggingHandler
     public function __invoke($request)
     {
         $handler = $this->handler;
-        $response = Core::proxy($handler($request), function ($response) {
-            if ($this->isRateLimitWarning($response)) {
+        $that = $this;
+        $response = Core::proxy($handler($request), function ($response) use ($that) {
+            if ($that->isRateLimitWarning($response)) {
                 $message = sprintf(
                     'AppSearch Rate Limit: %s remaining of %s allowed',
-                    $this->getRemainingRateLimit($response),
-                    $this->getAllowedRateLimit($response)
+                    $that->getRemainingRateLimit($response),
+                    $that->getAllowedRateLimit($response)
                 );
-                $this->logger->warning($message);
+                $that->logger->warning($message);
             }
 
             return $response;
@@ -92,7 +93,7 @@ class RateLimitLoggingHandler
      *
      * @return bool
      */
-    private function isRateLimitWarning($response)
+    public function isRateLimitWarning($response)
     {
         $allowedRateLimit = $this->getAllowedRateLimit($response);
         $remainingRateLimit = $this->getRemainingRateLimit($response);
@@ -111,7 +112,7 @@ class RateLimitLoggingHandler
      *
      * @return null|int
      */
-    private function getAllowedRateLimit($response)
+    public function getAllowedRateLimit($response)
     {
         return $this->getHeaderValue($response, self::RATE_LIMIT_LIMIT_HEADER_NAME);
     }
@@ -123,7 +124,7 @@ class RateLimitLoggingHandler
      *
      * @return null|int
      */
-    private function getRemainingRateLimit($response)
+    public function getRemainingRateLimit($response)
     {
         return $this->getHeaderValue($response, self::RATE_LIMIT_REMAINING_HEADER_NAME);
     }

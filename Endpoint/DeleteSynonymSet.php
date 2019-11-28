@@ -26,6 +26,6 @@ class DeleteSynonymSet extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoin
      */
     protected $uri = '/engines/{engine_name}/synonyms/{synonym_set_id}';
 
-    protected $routeParams = ['engine_name', 'synonym_set_id'];
+    protected $routeParams = array('engine_name', 'synonym_set_id');
     // phpcs:enable
 }

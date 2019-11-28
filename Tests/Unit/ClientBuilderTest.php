@@ -29,7 +29,7 @@ class ClientBuilderTest extends TestCase
     public function testInstantiation($apiEndpoint)
     {
         $client = ClientBuilder::create($apiEndpoint, 'apiKey')->build();
-        $this->assertInstanceOf(Client::class, $client);
+        $this->assertInstanceOf("Elastic\AppSearch\Client\Client", $client);
     }
 
     /**
@@ -51,7 +51,7 @@ class ClientBuilderTest extends TestCase
      */
     public function validApiEndpoints()
     {
-        return [['https://test.com'], ['http://test.com'], ['http://test'], ['https://test'], ['test.com'], ['test']];
+        return array(array('https://test.com'), array('http://test.com'), array('http://test'), array('https://test'), array('test.com'), array('test'));
     }
 
     /**
@@ -59,6 +59,6 @@ class ClientBuilderTest extends TestCase
      */
     public function invalidApiEndpoints()
     {
-        return [['test_']];
+        return array(array('test_'));
     }
 }

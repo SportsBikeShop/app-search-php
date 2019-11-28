@@ -26,8 +26,8 @@ class LogClickthrough extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines/{engine_name}/click';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['query', 'document_id', 'request_id', 'tags'];
+    protected $paramWhitelist = array('query', 'document_id', 'request_id', 'tags');
     // phpcs:enable
 }

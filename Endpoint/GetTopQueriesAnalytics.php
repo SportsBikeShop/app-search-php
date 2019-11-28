@@ -26,8 +26,8 @@ class GetTopQueriesAnalytics extends \Elastic\OpenApi\Codegen\Endpoint\AbstractE
      */
     protected $uri = '/engines/{engine_name}/analytics/queries';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['page.size', 'filters'];
+    protected $paramWhitelist = array('page.size', 'filters');
     // phpcs:enable
 }

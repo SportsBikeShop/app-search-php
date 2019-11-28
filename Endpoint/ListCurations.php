@@ -26,8 +26,8 @@ class ListCurations extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines/{engine_name}/curations';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['page.current', 'page.size'];
+    protected $paramWhitelist = array('page.current', 'page.size');
     // phpcs:enable
 }

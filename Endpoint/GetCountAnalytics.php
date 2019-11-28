@@ -26,8 +26,8 @@ class GetCountAnalytics extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoi
      */
     protected $uri = '/engines/{engine_name}/analytics/counts';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['filters', 'interval'];
+    protected $paramWhitelist = array('filters', 'interval');
     // phpcs:enable
 }

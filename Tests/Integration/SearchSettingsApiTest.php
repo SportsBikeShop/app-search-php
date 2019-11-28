@@ -44,17 +44,17 @@ class SearchSettingsApiTest extends AbstractEngineTestCase
      *
      * @param array $searchFields
      *
-     * @testWith [{"title": {"weight": 2}}]
-     *           [{"title": {}}]
-     *           [{"title": {"weight": 2.4}}]
-     *           [{"title": {"weight": 2}, "text": {"weight": 2}}]
+     * @testWith array({"title": {"weight": 2}})
+     *           array({"title": {}})
+     *           array({"title": {"weight": 2.4}})
+     *           array({"title": {"weight": 2}, "text": {"weight": 2}})
      */
     public function testUpdateSearchWeights($searchFields)
     {
         $client = $this->getDefaultClient();
         $engineName = $this->getDefaultEngineName();
 
-        $client->updateSearchSettings($engineName, ['search_fields' => $searchFields]);
+        $client->updateSearchSettings($engineName, array('search_fields' => $searchFields));
 
         $searchSettings = $client->getSearchSettings($engineName);
         $this->assertEquals($searchFields, $searchSettings['search_fields']);
@@ -67,18 +67,18 @@ class SearchSettingsApiTest extends AbstractEngineTestCase
      *
      * @expectedException \Elastic\OpenApi\Codegen\Exception\BadRequestException
      *
-     * @testWith [{"not_a_valid_field": {"weight": 2}}]
-     *           [{"title": {"weight": "not-a-number"}}]
-     *           [{"number_field": {"weight": 2}}]
-     *           [{"date_field": {"weight": 2}}]
+     * @testWith array({"not_a_valid_field": {"weight": 2}})
+     *           array({"title": {"weight": "not-a-number"}})
+     *           array({"number_field": {"weight": 2}})
+     *           array({"date_field": {"weight": 2}})
      */
     public function testInvalidUpdateSearchWeights($searchFields)
     {
         $client = $this->getDefaultClient();
         $engineName = $this->getDefaultEngineName();
 
-        $client->updateSchema($engineName, ['number_field' => 'number', 'date_field' => 'date']);
-        $client->updateSearchSettings($engineName, ['search_fields' => $searchFields]);
+        $client->updateSchema($engineName, array('number_field' => 'number', 'date_field' => 'date'));
+        $client->updateSearchSettings($engineName, array('search_fields' => $searchFields));
     }
 
     /**
@@ -102,11 +102,11 @@ class SearchSettingsApiTest extends AbstractEngineTestCase
      *
      * @param array $boosts
      *
-     * @testWith [{}]
-     *           [{"tags" : {"type": "value", "value": "Cat"}}]
-     *           [{"tags" : {"type": "value", "value": "Cat", "operation": "multiply"}}]
-     *           [{"tags" : {"type": "value", "value": "Cat", "factor": 3}}]
-     *           [{"tags" : {"type": "value", "value": ["Cat"]}}]
+     * @testWith array({})
+     *           array({"tags" : {"type": "value", "value": "Cat"}})
+     *           array({"tags" : {"type": "value", "value": "Cat", "operation": "multiply"}})
+     *           array({"tags" : {"type": "value", "value": "Cat", "factor": 3}})
+     *           array({"tags" : {"type": "value", "value": ["Cat"]}})
      */
     public function testUpdateBoosts($boosts)
     {

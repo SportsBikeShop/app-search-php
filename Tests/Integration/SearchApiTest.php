@@ -25,11 +25,11 @@ class SearchApiTest extends AbstractEngineTestCase
      *
      * @param array $searchRequest The search request.
      *
-     * @testWith ["cat", {"page": {"current": 1, "size": 10}}]
-     *           ["cat", {"page": {"current": 1, "size": 1}}]
-     *           ["", {"page": {"current": 1, "size": 10}}]
-     *           ["original", {"page": {"current": 1, "size": 10}}]
-     *           ["notfoundable", {"page": {"current": 1, "size": 10}}]
+     * @testWith array("cat", {"page": {"current": 1, "size": 10}})
+     *           array("cat", {"page": {"current": 1, "size": 1}})
+     *           array("", {"page": {"current": 1, "size": 10}})
+     *           array("original", {"page": {"current": 1, "size": 10}})
+     *           array("notfoundable", {"page": {"current": 1, "size": 10}})
      */
     public function testSimpleSearch($queryText, $searchParams)
     {
@@ -65,16 +65,16 @@ class SearchApiTest extends AbstractEngineTestCase
      * @param array $filters              Search filters.
      * @param int   $expectedResultsCount Number of expected results in the sample data.
      *
-     * @testWith [{"tags": ["Cats"]}, 2]
-     *           [{"tags": ["Copycat"]}, 1]
-     *           [{"tags": ["Copycat", "Hall Of Fame"]}, 2]
-     *           [{"any": [{"tags": ["Copycat"]}, {"tags": "Hall Of Fame"}]}, 2]
-     *           [{"all": [{"tags": ["Copycat"]}, {"tags": "Hall Of Fame"}]}, 0]
-     *           [{"all": [{"tags": ["Cats"]}], "none": [{"tags": "Hall Of Fame"}]}, 1]
+     * @testWith array({"tags": array("Cats")}, 2)
+     *           array({"tags": array("Copycat")}, 1)
+     *           array({"tags": array("Copycat", "Hall Of Fame")}, 2)
+     *           array({"any": array({"tags": array("Copycat")}, {"tags": "Hall Of Fame"})}, 2)
+     *           array({"all": array({"tags": array("Copycat")}, {"tags": "Hall Of Fame"})}, 0)
+     *           array({"all": array({"tags": array("Cats")}), "none": array({"tags": "Hall Of Fame"})}, 1)
      */
     public function testFilteredSearch($filters, $expectedResultsCount)
     {
-        $searchParams = ['filters' => $filters];
+        $searchParams = array('filters' => $filters);
         $searchResponse = $this->getDefaultClient()->search($this->getDefaultEngineName(), '', $searchParams);
         $this->assertCount($expectedResultsCount, $searchResponse['results']);
     }
@@ -85,12 +85,12 @@ class SearchApiTest extends AbstractEngineTestCase
      * @param array $facets             Search Facets.
      * @param int   $expectedValueCount Number of values expected in the facet.
      *
-     * @testWith [{"tags": {"type": "value"}}, 5]
-     *           [{"tags": [{"type": "value", "size": 3, "sort": {"value": "asc"}}]}, 3]
+     * @testWith array({"tags": {"type": "value"}}, 5)
+     *           array({"tags": array({"type": "value", "size": 3, "sort": {"value": "asc"}})}, 3)
      */
     public function testFacetedSearch($facets, $expectedValueCount)
     {
-        $searchParams = ['facets' => $facets];
+        $searchParams = array('facets' => $facets);
         $searchResponse = $this->getDefaultClient()->search($this->getDefaultEngineName(), '', $searchParams);
         $this->assertArrayHasKey('facets', $searchResponse);
 
@@ -112,15 +112,15 @@ class SearchApiTest extends AbstractEngineTestCase
      * @param array  $sortOrder          Sort order definition.
      * @param string $expectedFirstDocId Id of the first expected match.
      *
-     * @testWith [{"title": "asc"}, "JNDFojsd02"]
-     *           [{"title": "desc"}, "INscMGmhmX4"]
-     *           [[{"title": "asc"}], "JNDFojsd02"]
-     *           [[{"title": "desc"}], "INscMGmhmX4"]
-     *           [[{"title": "asc"}, {"_score": "desc"}], "JNDFojsd02"]
+     * @testWith array({"title": "asc"}, "JNDFojsd02")
+     *           array({"title": "desc"}, "INscMGmhmX4")
+     *           array(array({"title": "asc"}), "JNDFojsd02")
+     *           array(array({"title": "desc"}), "INscMGmhmX4")
+     *           array(array({"title": "asc"}, {"_score": "desc"}), "JNDFojsd02")
      */
     public function testSortedSearch($sortOrder, $expectedFirstDocId)
     {
-        $searchParams = ['sort' => $sortOrder];
+        $searchParams = array('sort' => $sortOrder);
         $searchResponse = $this->getDefaultClient()->search($this->getDefaultEngineName(), '', $searchParams);
         $this->assertEquals($expectedFirstDocId, $searchResponse['results'][0]['id']['raw']);
     }
@@ -132,14 +132,14 @@ class SearchApiTest extends AbstractEngineTestCase
      * @param array  $searchFields         Search fields.
      * @param int    $expectedResultsCount Number of expected results in the sample data.
      *
-     * @testWith ["cat", {"title": {}}, 2]
-     *           ["cat", {"title": {"weight": 1}}, 2]
-     *           ["cat", {"text" : {}}, 0]
-     *           ["cat", {"title": {"weight": 1}, "text": {}}, 2]
+     * @testWith array("cat", {"title": {}}, 2)
+     *           array("cat", {"title": {"weight": 1}}, 2)
+     *           array("cat", {"text" : {}}, 0)
+     *           array("cat", {"title": {"weight": 1}, "text": {}}, 2)
      */
     public function testSearchFields($queryText, $searchFields, $expectedResultsCount)
     {
-        $searchParams = ['search_fields' => $searchFields];
+        $searchParams = array('search_fields' => $searchFields);
         $searchResponse = $this->getDefaultClient()->search($this->getDefaultEngineName(), $queryText, $searchParams);
         $this->assertCount($expectedResultsCount, $searchResponse['results']);
     }
@@ -149,7 +149,7 @@ class SearchApiTest extends AbstractEngineTestCase
      */
     public function testMultiSearch()
     {
-        $queries = [['query' => ''], ['query' => 'cat']];
+        $queries = array(array('query' => ''), array('query' => 'cat'));
 
         $searchResponses = $this->getDefaultClient()->multiSearch($this->getDefaultEngineName(), $queries);
 

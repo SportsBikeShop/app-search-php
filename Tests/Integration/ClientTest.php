@@ -24,7 +24,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     public function testClientBuilder()
     {
         $client = ClientBuilder::create(getenv('AS_URL'), getenv('AS_PRIVATE_KEY'))->build();
-        $this->assertInstanceOf(Client::class, $client);
+        $this->assertInstanceOf("Elastic\AppSearch\Client\Client", $client);
     }
 
     /**
@@ -33,9 +33,9 @@ class ClientTest extends \PHPUnit\Framework\TestCase
      * @param string API Endpoint.
      * @param string Class of the exception that should be raised.
      *
-     * @testWith ["http://localhost:5000", "\\Elastic\\OpenApi\\Codegen\\Exception\\CouldNotConnectToHostException"]
-     *           ["http://foo.bar:5000", "\\Elastic\\OpenApi\\Codegen\\Exception\\CouldNotResolveHostException"]
-     *           ["_foo_", "\\Elastic\\OpenApi\\Codegen\\Exception\\UnexpectedValueException"]
+     * @testWith array("http://localhost:5000", "\\Elastic\\OpenApi\\Codegen\\Exception\\CouldNotConnectToHostException")
+     *           array("http://foo.bar:5000", "\\Elastic\\OpenApi\\Codegen\\Exception\\CouldNotResolveHostException")
+     *           array("_foo_", "\\Elastic\\OpenApi\\Codegen\\Exception\\UnexpectedValueException")
      */
     public function testConnectionErrors($apiEndpoint, $exceptionClass)
     {

@@ -73,7 +73,7 @@ class DocumentApiTest extends AbstractEngineTestCase
         $documentIds = array_column($documents, 'id');
         $client->indexDocuments($engineName, $documents);
 
-        $client->deleteDocuments($engineName, [current($documentIds)]);
+        $client->deleteDocuments($engineName, array(current($documentIds)));
 
         $documentListResponse = $client->listDocuments($engineName);
         $this->assertCount(count($documents) - 1, $documentListResponse['results']);
@@ -87,12 +87,13 @@ class DocumentApiTest extends AbstractEngineTestCase
         $documents = $this->getSampleDocuments();
         $engineName = $this->getDefaultEngineName();
         $client = $this->getDefaultClient();
-        $client->updateSchema($engineName, ['title' => 'text']);
+        $client->updateSchema($engineName, array('title' => 'text'));
         $client->indexDocuments($engineName, $documents);
 
-        $documentsUpdates = [['id' => $documents[0]['id'], 'title' => 'foo']];
+        $documentsUpdates = array(array('id' => $documents[0]['id'], 'title' => 'foo'));
         $updateResponse = $client->updateDocuments($engineName, $documentsUpdates);
-        $this->assertEmpty(current($updateResponse)['errors']);
+        $tmp = current($updateResponse);
+        $this->assertEmpty($tmp['errors']);
     }
 
     /**
@@ -100,7 +101,7 @@ class DocumentApiTest extends AbstractEngineTestCase
      */
     public function testGetNonExistingDocuments()
     {
-        $this->assertEquals([null], $this->getDefaultClient()->getDocuments($this->getDefaultEngineName(), ['foo']));
+        $this->assertEquals(array(null), $this->getDefaultClient()->getDocuments($this->getDefaultEngineName(), array('foo')));
     }
 
     /**

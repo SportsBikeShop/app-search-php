@@ -32,7 +32,7 @@ class ApiErrorHandler
      *
      * @param callable $handler original handler
      */
-    public function __construct(callable $handler)
+    public function __construct($handler)
     {
         $this->handler = $handler;
     }
@@ -47,9 +47,10 @@ class ApiErrorHandler
     public function __invoke($request)
     {
         $handler = $this->handler;
-        $response = Core::proxy($handler($request), function ($response) use ($request) {
+        $that = $this;
+        $response = Core::proxy($handler($request), function ($response) use ($request, $that) {
             if ($response['status'] >= 400) {
-                $exception = new ApiException($this->getErrorMessage($response));
+                $exception = new ApiException($that->getErrorMessage($response));
                 switch ($response['status']) {
                     case 401:
                     case 403:
@@ -59,7 +60,7 @@ class ApiErrorHandler
                         $exception = new NotFoundException($exception->getMessage());
                         break;
                     case 429:
-                        $exception = $this->getApiRateExceededException($exception->getMessage(), $response);
+                        $exception = $that->getApiRateExceededException($exception->getMessage(), $response);
                         break;
                     case 400:
                         $exception = new BadRequestException($exception->getMessage());
@@ -82,7 +83,7 @@ class ApiErrorHandler
      *
      * @return string
      */
-    private function getErrorMessage($response)
+    public function getErrorMessage($response)
     {
         $message = isset($response['reason']) ? $response['reason'] : 'Unexpected error.';
 
@@ -103,7 +104,7 @@ class ApiErrorHandler
      *
      * @return \Elastic\AppSearch\Client\Exception\ApiRateExceededException
      */
-    private function getApiRateExceededException($message, $response)
+    public function getApiRateExceededException($message, $response)
     {
         $limit = null;
         $retryAfter = null;

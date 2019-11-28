@@ -20,21 +20,21 @@ use Psr\Log\LoggerInterface;
  */
 class RateLimitLoggingHandlerTest extends TestCase
 {
-    private $logArray = [];
+    public $logArray = array();
 
     /**
      * Check rate limit warning are logged successfully.
      *
-     * @testWith [null, null]
-     *           [100, 50]
-     *           [100, 5]
+     * @testWith array(null, null)
+     *           array(100, 50)
+     *           array(100, 5)
      */
     public function testExceptionTypes($limit, $remaining)
     {
-        $response = ['headers' => array_filter($this->getResponseHeaders($limit, $remaining))];
+        $response = array('headers' => array_filter($this->getResponseHeaders($limit, $remaining)));
         $handler = $this->getHandler($response);
 
-        $handler([])->wait();
+        $handler(array())->wait();
 
         if ($this->shouldLogWarning($limit, $remaining)) {
             $this->assertNotEmpty($this->logArray);
@@ -83,10 +83,10 @@ class RateLimitLoggingHandlerTest extends TestCase
      */
     private function getResponseHeaders($limit, $remaining)
     {
-        return [
-            RateLimitLoggingHandler::RATE_LIMIT_LIMIT_HEADER_NAME => [$limit],
-            RateLimitLoggingHandler::RATE_LIMIT_REMAINING_HEADER_NAME => [$remaining],
-        ];
+        return array(
+            RateLimitLoggingHandler::RATE_LIMIT_LIMIT_HEADER_NAME => array($limit),
+            RateLimitLoggingHandler::RATE_LIMIT_REMAINING_HEADER_NAME => array($remaining),
+        );
     }
 
     /**
@@ -96,11 +96,12 @@ class RateLimitLoggingHandlerTest extends TestCase
      */
     private function getLoggerMock()
     {
-        $this->logArray = [];
+        $this->logArray = array();
 
-        $logger = $this->createMock(LoggerInterface::class);
-        $logger->method('warning')->willReturnCallback(function ($message) {
-            $this->logArray['warning'][] = $message;
+        $logger = $this->createMock("\Psr\Log\LoggerInterface");
+        $that = $this;
+        $logger->method('warning')->willReturnCallback(function ($message) use ($that) {
+            $that->logArray['warning'][] = $message;
         });
 
         return $logger;

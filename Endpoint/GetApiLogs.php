@@ -26,8 +26,8 @@ class GetApiLogs extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines/{engine_name}/logs/api';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['filters.date.from', 'filters.date.to', 'page.current', 'page.size', 'query', 'filters.status', 'filters.method', 'sort_direction'];
+    protected $paramWhitelist = array('filters.date.from', 'filters.date.to', 'page.current', 'page.size', 'query', 'filters.status', 'filters.method', 'sort_direction');
     // phpcs:enable
 }

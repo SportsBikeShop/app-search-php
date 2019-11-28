@@ -25,9 +25,9 @@ class CurationApiTest extends AbstractEngineTestCase
      *
      * @param array $curationData
      *
-     * @testWith [[""], ["INscMGmhmX4"], ["JNDFojsd02"]]
-     *           [["cat", "grumpy"], ["INscMGmhmX4"], null]
-     *           [["lol"], null, ["INscMGmhmX4"]]
+     * @testWith array(array(""), array("INscMGmhmX4"), array("JNDFojsd02"))
+     *           array(array("cat", "grumpy"), array("INscMGmhmX4"), null)
+     *           array(array("lol"), null, array("INscMGmhmX4"))
      */
     public function testCurationApi($queries, $promotedIds, $hiddenIds)
     {
@@ -49,6 +49,6 @@ class CurationApiTest extends AbstractEngineTestCase
         $this->assertEquals($curation['id'], $updateResponse['id']);
 
         $deleteOperationResponse = $client->deleteCuration($engineName, $curation['id']);
-        $this->assertEquals(['deleted' => true], $deleteOperationResponse);
+        $this->assertEquals(array('deleted' => true), $deleteOperationResponse);
     }
 }

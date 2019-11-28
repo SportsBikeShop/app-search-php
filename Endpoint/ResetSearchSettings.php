@@ -26,6 +26,6 @@ class ResetSearchSettings extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndp
      */
     protected $uri = '/engines/{engine_name}/search_settings/reset';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
     // phpcs:enable
 }

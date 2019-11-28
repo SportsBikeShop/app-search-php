@@ -63,7 +63,7 @@ class RequestClientHeaderHandler
      * @param callable $handler     Original handler.
      * @param string   $integration Integration name & version.
      */
-    public function __construct(callable $handler, $integration = null)
+    public function __construct($handler, $integration = null)
     {
         $this->handler = $handler;
         $this->integration = $integration;
@@ -80,16 +80,16 @@ class RequestClientHeaderHandler
     {
         $handler = $this->handler;
 
-        $request = Core::setHeader($request, self::CLIENT_NAME_HEADER, [self::CLIENT_NAME_VALUE]);
-        $request = Core::setHeader($request, self::CLIENT_VERSION_HEADER, [self::CLIENT_VERSION_VALUE]);
+        $request = Core::setHeader($request, self::CLIENT_NAME_HEADER, array(self::CLIENT_NAME_VALUE));
+        $request = Core::setHeader($request, self::CLIENT_VERSION_HEADER, array(self::CLIENT_VERSION_VALUE));
 
         if (null !== $this->integration) {
             list($integrationName, $integrationVersion) = explode(':', $this->integration);
             if ($integrationName) {
-                $request = Core::setHeader($request, self::CLIENT_INTEGRATION_NAME_HEADER, [$integrationName]);
+                $request = Core::setHeader($request, self::CLIENT_INTEGRATION_NAME_HEADER, array($integrationName));
             }
             if ($integrationVersion) {
-                $request = Core::setHeader($request, self::CLIENT_INTEGRATION_VERSION_HEADER, [$integrationVersion]);
+                $request = Core::setHeader($request, self::CLIENT_INTEGRATION_VERSION_HEADER, array($integrationVersion));
             }
         }
 

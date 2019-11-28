@@ -26,6 +26,6 @@ class GetSchema extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines/{engine_name}/schema';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
     // phpcs:enable
 }

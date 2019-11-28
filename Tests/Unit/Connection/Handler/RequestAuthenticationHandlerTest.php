@@ -28,7 +28,7 @@ class RequestAuthenticationHandlerTest extends TestCase
         };
 
         $authenticationHandler = new RequestAuthenticationHandler($handler, 'apiKey');
-        $response = $authenticationHandler([]);
+        $response = $authenticationHandler(array());
         $this->assertArrayHasKey('Authorization', $response);
         $this->assertEquals('Bearer apiKey', current($response['Authorization']));
     }

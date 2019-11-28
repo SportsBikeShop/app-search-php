@@ -26,8 +26,8 @@ class UpdateCuration extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines/{engine_name}/curations/{curation_id}';
 
-    protected $routeParams = ['engine_name', 'curation_id'];
+    protected $routeParams = array('engine_name', 'curation_id');
 
-    protected $paramWhitelist = ['queries', 'promoted', 'hidden'];
+    protected $paramWhitelist = array('queries', 'promoted', 'hidden');
     // phpcs:enable
 }

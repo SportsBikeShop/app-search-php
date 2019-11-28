@@ -25,10 +25,10 @@ class QuerySuggestionApiTest extends AbstractEngineTestCase
      *
      * @param array $searchRequest The search request.
      *
-     * @testWith ["cat", null, null]
-     *           ["gru", null, 4]
-     *           ["gru", ["title"], null]
-     *           ["gru", ["title"], 1]
+     * @testWith array("cat", null, null)
+     *           array("gru", null, 4)
+     *           array("gru", array("title"), null)
+     *           array("gru", array("title"), 1)
      */
     public function testQuerySuggestion($queryText, $fields, $size)
     {
@@ -44,8 +44,9 @@ class QuerySuggestionApiTest extends AbstractEngineTestCase
             $this->assertLessThanOrEqual($size, count($suggestions['results']['documents']));
         }
 
-        array_walk($suggestions['results']['documents'], function ($suggestion) {
-            $this->assertNotEmpty($suggestion['suggestion']);
+        $that = $this;
+        array_walk($suggestions['results']['documents'], function ($suggestion) use ($that) {
+            $that->assertNotEmpty($suggestion['suggestion']);
         });
     }
 }

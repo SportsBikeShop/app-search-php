@@ -26,8 +26,8 @@ class CreateCuration extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines/{engine_name}/curations';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['queries', 'promoted', 'hidden'];
+    protected $paramWhitelist = array('queries', 'promoted', 'hidden');
     // phpcs:enable
 }

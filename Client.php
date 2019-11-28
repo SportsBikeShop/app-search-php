@@ -31,12 +31,12 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function createCuration($engineName, $queries, $promotedDocIds = null, $hiddenDocIds = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'queries' => $queries,
             'promoted' => $promotedDocIds,
             'hidden' => $hiddenDocIds,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('CreateCuration');
         $endpoint->setParams($params);
@@ -56,10 +56,10 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function createEngine($name, $language = null)
     {
-        $params = [
+        $params = array(
             'name' => $name,
             'language' => $language,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('CreateEngine');
         $endpoint->setParams($params);
@@ -79,10 +79,10 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function createSynonymSet($engineName, $synonyms)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'synonyms' => $synonyms,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('CreateSynonymSet');
         $endpoint->setParams($params);
@@ -102,10 +102,10 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function deleteCuration($engineName, $curationId)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'curation_id' => $curationId,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('DeleteCuration');
         $endpoint->setParams($params);
@@ -125,9 +125,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function deleteDocuments($engineName, $documentIds)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('DeleteDocuments');
         $endpoint->setParams($params);
@@ -147,9 +147,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function deleteEngine($engineName)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('DeleteEngine');
         $endpoint->setParams($params);
@@ -169,10 +169,10 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function deleteSynonymSet($engineName, $synonymSetId)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'synonym_set_id' => $synonymSetId,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('DeleteSynonymSet');
         $endpoint->setParams($params);
@@ -199,7 +199,7 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function getApiLogs($engineName, $fromDate, $toDate, $currentPage = null, $pageSize = null, $query = null, $httpStatusFilter = null, $httpMethodFilter = null, $sortDirection = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'filters.date.from' => $fromDate,
             'filters.date.to' => $toDate,
@@ -209,7 +209,7 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
             'filters.status' => $httpStatusFilter,
             'filters.method' => $httpMethodFilter,
             'sort_direction' => $sortDirection,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('GetApiLogs');
         $endpoint->setParams($params);
@@ -230,11 +230,11 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function getCountAnalytics($engineName, $filters = null, $interval = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'filters' => $filters,
             'interval' => $interval,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('GetCountAnalytics');
         $endpoint->setParams($params);
@@ -254,10 +254,10 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function getCuration($engineName, $curationId)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'curation_id' => $curationId,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('GetCuration');
         $endpoint->setParams($params);
@@ -277,9 +277,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function getDocuments($engineName, $documentIds)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('GetDocuments');
         $endpoint->setParams($params);
@@ -299,9 +299,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function getEngine($engineName)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('GetEngine');
         $endpoint->setParams($params);
@@ -320,9 +320,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function getSchema($engineName)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('GetSchema');
         $endpoint->setParams($params);
@@ -341,9 +341,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function getSearchSettings($engineName)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('GetSearchSettings');
         $endpoint->setParams($params);
@@ -363,10 +363,10 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function getSynonymSet($engineName, $synonymSetId)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'synonym_set_id' => $synonymSetId,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('GetSynonymSet');
         $endpoint->setParams($params);
@@ -388,12 +388,12 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function getTopClicksAnalytics($engineName, $query = null, $pageSize = null, $filters = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'query' => $query,
             'page.size' => $pageSize,
             'filters' => $filters,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('GetTopClicksAnalytics');
         $endpoint->setParams($params);
@@ -414,11 +414,11 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function getTopQueriesAnalytics($engineName, $pageSize = null, $filters = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'page.size' => $pageSize,
             'filters' => $filters,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('GetTopQueriesAnalytics');
         $endpoint->setParams($params);
@@ -438,9 +438,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function indexDocuments($engineName, $documents)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('IndexDocuments');
         $endpoint->setParams($params);
@@ -462,11 +462,11 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function listCurations($engineName, $currentPage = null, $pageSize = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'page.current' => $currentPage,
             'page.size' => $pageSize,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('ListCurations');
         $endpoint->setParams($params);
@@ -487,11 +487,11 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function listDocuments($engineName, $currentPage = null, $pageSize = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'page.current' => $currentPage,
             'page.size' => $pageSize,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('ListDocuments');
         $endpoint->setParams($params);
@@ -511,10 +511,10 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function listEngines($currentPage = null, $pageSize = null)
     {
-        $params = [
+        $params = array(
             'page.current' => $currentPage,
             'page.size' => $pageSize,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('ListEngines');
         $endpoint->setParams($params);
@@ -535,11 +535,11 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function listSynonymSets($engineName, $currentPage = null, $pageSize = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'page.current' => $currentPage,
             'page.size' => $pageSize,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('ListSynonymSets');
         $endpoint->setParams($params);
@@ -562,13 +562,13 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function logClickthrough($engineName, $queryText, $documentId, $requestId = null, $tags = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'query' => $queryText,
             'document_id' => $documentId,
             'request_id' => $requestId,
             'tags' => $tags,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('LogClickthrough');
         $endpoint->setParams($params);
@@ -588,10 +588,10 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function multiSearch($engineName, $queries)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'queries' => $queries,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('MultiSearch');
         $endpoint->setParams($params);
@@ -613,12 +613,12 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function querySuggestion($engineName, $query, $fields = null, $size = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'query' => $query,
             'types.documents.fields' => $fields,
             'size' => $size,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('QuerySuggestion');
         $endpoint->setParams($params);
@@ -637,9 +637,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function resetSearchSettings($engineName)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('ResetSearchSettings');
         $endpoint->setParams($params);
@@ -660,10 +660,10 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function search($engineName, $queryText, $searchRequestParams = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'query' => $queryText,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('Search');
         $endpoint->setParams($params);
@@ -687,13 +687,13 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function updateCuration($engineName, $curationId, $queries, $promotedDocIds = null, $hiddenDocIds = null)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
             'curation_id' => $curationId,
             'queries' => $queries,
             'promoted' => $promotedDocIds,
             'hidden' => $hiddenDocIds,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('UpdateCuration');
         $endpoint->setParams($params);
@@ -713,9 +713,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function updateDocuments($engineName, $documents)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('UpdateDocuments');
         $endpoint->setParams($params);
@@ -736,9 +736,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function updateSchema($engineName, $schema)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('UpdateSchema');
         $endpoint->setParams($params);
@@ -759,9 +759,9 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      */
     public function updateSearchSettings($engineName, $searchSettings)
     {
-        $params = [
+        $params = array(
             'engine_name' => $engineName,
-        ];
+        );
 
         $endpoint = $this->getEndpoint('UpdateSearchSettings');
         $endpoint->setParams($params);

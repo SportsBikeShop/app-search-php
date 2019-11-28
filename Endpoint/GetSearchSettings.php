@@ -26,6 +26,6 @@ class GetSearchSettings extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoi
      */
     protected $uri = '/engines/{engine_name}/search_settings';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
     // phpcs:enable
 }

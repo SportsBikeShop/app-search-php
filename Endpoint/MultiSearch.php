@@ -26,8 +26,8 @@ class MultiSearch extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines/{engine_name}/multi_search';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['queries'];
+    protected $paramWhitelist = array('queries');
     // phpcs:enable
 }

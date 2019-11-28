@@ -38,7 +38,7 @@ class ApiErrorHandlerTest extends TestCase
             }
         );
 
-        $handlerResponse = $handler([])->wait();
+        $handlerResponse = $handler(array())->wait();
 
         if (null == $exceptionClass) {
             $this->assertEquals($response, $handlerResponse);
@@ -53,18 +53,18 @@ class ApiErrorHandlerTest extends TestCase
      */
     public function testApiRateLimited($limit = 10, $retryAfter = 20)
     {
-        $headers = [
-            RateLimitLoggingHandler::RATE_LIMIT_LIMIT_HEADER_NAME => [$limit],
-            RateLimitLoggingHandler::RETRY_AFTER_HEADER_NAME => [$retryAfter],
-        ];
+        $headers = array(
+            RateLimitLoggingHandler::RATE_LIMIT_LIMIT_HEADER_NAME => array($limit),
+            RateLimitLoggingHandler::RETRY_AFTER_HEADER_NAME => array($retryAfter),
+        );
         $handler = new ApiErrorHandler(
             function ($request) use ($headers) {
-                return new CompletedFutureArray(['status' => 429, 'headers' => $headers]);
+                return new CompletedFutureArray(array('status' => 429, 'headers' => $headers));
             }
         );
 
         try {
-            $handler([])->wait();
+            $handler(array())->wait();
         } catch (\Elastic\AppSearch\Client\Exception\ApiRateExceededException $e) {
             $this->assertEquals($limit, $e->getApiRateLimit());
             $this->assertEquals($retryAfter, $e->getRetryAfter());

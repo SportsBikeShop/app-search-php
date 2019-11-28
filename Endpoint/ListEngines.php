@@ -26,6 +26,6 @@ class ListEngines extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines';
 
-    protected $paramWhitelist = ['page.current', 'page.size'];
+    protected $paramWhitelist = array('page.current', 'page.size');
     // phpcs:enable
 }

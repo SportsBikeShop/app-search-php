@@ -26,6 +26,6 @@ class CreateEngine extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines';
 
-    protected $paramWhitelist = ['name', 'language'];
+    protected $paramWhitelist = array('name', 'language');
     // phpcs:enable
 }

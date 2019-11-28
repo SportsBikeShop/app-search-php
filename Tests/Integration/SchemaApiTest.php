@@ -39,16 +39,16 @@ class SchemaApiTest extends AbstractEngineTestCase
      * @param string $fieldName
      * @param string $fieldType
      *
-     * @testWith ["string_field", "text"]
-     *           ["date_field", "date"]
-     *           ["number_field", "number"]
-     *           ["geo_field", "geolocation"]
+     * @testWith array("string_field", "text")
+     *           array("date_field", "date")
+     *           array("number_field", "number")
+     *           array("geo_field", "geolocation")
      */
     public function testUpdateSchema($fieldName, $fieldType)
     {
         $client = $this->getDefaultClient();
         $engineName = $this->getDefaultEngineName();
-        $schema = $client->updateSchema($engineName, [$fieldName => $fieldType]);
+        $schema = $client->updateSchema($engineName, array($fieldName => $fieldType));
 
         $this->assertArrayHasKey($fieldName, $schema);
         $this->assertEquals($fieldType, $schema[$fieldName]);
@@ -62,20 +62,20 @@ class SchemaApiTest extends AbstractEngineTestCase
      *
      * @expectedException \Elastic\OpenApi\Codegen\Exception\BadRequestException
      *
-     * @testWith ["string_field", "not-a-valid-type"]
-     *           ["id", "number"]
-     *           ["12", "text"]
-     *           ["invalid field name", "text"]
-     *           ["_invalid_field_name", "text"]
-     *           ["invalid-field-name", "text"]
-     *           ["invalidFieldName", "text"]
-     *           ["invalid.field.name", "text"]
-     *           ["INVALID", "text"]
+     * @testWith array("string_field", "not-a-valid-type")
+     *           array("id", "number")
+     *           array("12", "text")
+     *           array("invalid field name", "text")
+     *           array("_invalid_field_name", "text")
+     *           array("invalid-field-name", "text")
+     *           array("invalidFieldName", "text")
+     *           array("invalid.field.name", "text")
+     *           array("INVALID", "text")
      */
     public function testInvalidSchemaUpdate($fieldName, $fieldType)
     {
         $client = $this->getDefaultClient();
         $engineName = $this->getDefaultEngineName();
-        $client->updateSchema($engineName, [$fieldName => $fieldType]);
+        $client->updateSchema($engineName, array($fieldName => $fieldType));
     }
 }

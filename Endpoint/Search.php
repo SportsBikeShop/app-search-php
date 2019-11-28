@@ -26,8 +26,8 @@ class Search extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoint
      */
     protected $uri = '/engines/{engine_name}/search';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['query'];
+    protected $paramWhitelist = array('query');
     // phpcs:enable
 }

@@ -26,8 +26,8 @@ class CreateSynonymSet extends \Elastic\OpenApi\Codegen\Endpoint\AbstractEndpoin
      */
     protected $uri = '/engines/{engine_name}/synonyms';
 
-    protected $routeParams = ['engine_name'];
+    protected $routeParams = array('engine_name');
 
-    protected $paramWhitelist = ['synonyms'];
+    protected $paramWhitelist = array('synonyms');
     // phpcs:enable
 }

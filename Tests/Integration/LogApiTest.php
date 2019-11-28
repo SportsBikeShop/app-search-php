@@ -18,17 +18,17 @@ class LogApiTest extends AbstractEngineTestCase
     /**
      * Test the basic API log enpoint is returning results.
      *
-     * @testWith [null, null, null, null, null, null]
-     *           ["search", null, null, null, null, null]
-     *           ["search", 2, 2, null, null, null]
-     *           [null, null, null, 200, null, null]
-     *           [null, null, null, 400, null, null]
-     *           [null, null, null, null, "POST", null]
-     *           [null, null, null, null, null, null, "asc"]
-     *           [null, null, null, null, null, null, "desc"]
-     *           [null, null, null, null, null, null, "ASC"]
-     *           [null, null, null, null, null, null, "DESC"]
-     *           ["search", 2, 2, 200, "GET", "desc"]
+     * @testWith array(null, null, null, null, null, null)
+     *           array("search", null, null, null, null, null)
+     *           array("search", 2, 2, null, null, null)
+     *           array(null, null, null, 200, null, null)
+     *           array(null, null, null, 400, null, null)
+     *           array(null, null, null, null, "POST", null)
+     *           array(null, null, null, null, null, null, "asc")
+     *           array(null, null, null, null, null, null, "desc")
+     *           array(null, null, null, null, null, null, "ASC")
+     *           array(null, null, null, null, null, null, "DESC")
+     *           array("search", 2, 2, 200, "GET", "desc")
      */
     public function testGetLogs($query, $currentPage, $pageSize, $status, $method, $sortDir)
     {

@@ -28,7 +28,7 @@ class RequestClientHeaderHandlerTest extends TestCase
         };
 
         $requestHandler = new RequestClientHeaderHandler($handler);
-        $response = $requestHandler([]);
+        $response = $requestHandler(array());
 
         $this->assertArrayHasKey('X-Swiftype-Client', $response);
         $this->assertArrayHasKey('X-Swiftype-Client-Version', $response);
@@ -44,13 +44,13 @@ class RequestClientHeaderHandlerTest extends TestCase
         };
 
         $requestHandler = new RequestClientHeaderHandler($handler, 'integration:2.1.1');
-        $response = $requestHandler([]);
+        $response = $requestHandler(array());
 
         $this->assertArrayHasKey('X-Swiftype-Client', $response);
         $this->assertArrayHasKey('X-Swiftype-Client-Version', $response);
         $this->assertArrayHasKey('X-Swiftype-Integration', $response);
         $this->assertArrayHasKey('X-Swiftype-Integration-Version', $response);
-        $this->assertEquals(['integration'], $response['X-Swiftype-Integration']);
-        $this->assertEquals(['2.1.1'], $response['X-Swiftype-Integration-Version']);
+        $this->assertEquals(array('integration'), $response['X-Swiftype-Integration']);
+        $this->assertEquals(array('2.1.1'), $response['X-Swiftype-Integration-Version']);
     }
 }
